@@ -1,0 +1,62 @@
+{
+  "name": "g2-shape",
+  "version": "1.0.0",
+  "description": "A collection of shapes of visualization for G2 or G2Plot",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf -rf lib esm dist",
+    "lint-staged": "lint-staged",
+    "test": "npm run build",
+    "build:watch": "rimraf ./dist && rollup -c -w",
+    "build:umd": "rimraf ./dist && rollup -c",
+    "build:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+    "build:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:umd",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "visualization",
+    "g2",
+    "g2plot",
+    "graphic",
+    "shape"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.3.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "rollup": "^2.26.10",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-size": "^0.2.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-uglify": "^6.0.3",
+    "typescript": "^3.6.3",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "author": "kasmine",
+  "license": "MIT",
+  "dependencies": {
+    "@antv/g2": "^4.1.6"
+  }
+}

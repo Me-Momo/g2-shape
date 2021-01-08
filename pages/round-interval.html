@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🥚 圆角矩形</title>
+    <style>
+      body {
+        overflow: hidden;
+        margin: 16px 24px;
+        height: calc(100vh - 32px);
+        width: calc(100vw - 48px);
+        font-size: 14px;
+        font-family: Avenir, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
+          Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol', sans-serif;
+      }
+
+      .container {
+        display: flex;
+      }
+      #container,
+      .api {
+        width: 50%;
+        height: 400px;
+        margin: 0 12px;
+
+        border: 1px solid #dedede;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="container"></div>
+      <div class="api">
+        <pre>
+    registerRoundInterval({ radius: [5, 5] });
+        </prec>
+      </div>
+    </div>
+    <script src="https://unpkg.com/@antv/g2@4"></script>
+    <script src="../dist/g2-shape.min.js"></script>
+    <script>
+      const { Chart, registerShape } = G2;
+      const { registerRoundInterval } = G2Shape;
+
+      registerRoundInterval({ radius: [5, 5] });
+
+      fetch(
+        'https://gw.alipayobjects.com/os/antfincdn/ApduMnyxyX/interval.json'
+      )
+        .then(res => res.json())
+        .then(data => {
+          const chart = new Chart({
+            container: 'container',
+            autoFit: true,
+            height: 500,
+            padding: [150, 80],
+          });
+          chart.data(data);
+          chart.axis('date', false);
+          chart.legend(false);
+          chart.tooltip({ showMarkers: false });
+          chart
+            .interval()
+            .position('date*actual')
+            .color('#5B8FF9')
+            .tooltip('actual')
+            .shape('date*actual', (date, val) => {
+              return 'round-interval';
+            });
+          chart.interaction('active-region');
+          chart.render();
+        });
+    </script>
+  </body>
+</html>
