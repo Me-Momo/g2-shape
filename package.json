@@ -1,8 +1,11 @@
 {
   "name": "g2-shape",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "A collection of shapes of visualization for G2 or G2Plot",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "unpkg": "dist/g2-shape.min.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rimraf -rf lib esm dist",
     "lint-staged": "lint-staged",
@@ -54,7 +57,7 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "author": "kasmine",
+  "author": "visiky",
   "license": "MIT",
   "dependencies": {
     "@antv/g2": "^4.1.6"
