@@ -1,11 +1,17 @@
 {
   "name": "g2-shape",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A collection of shapes of visualization for G2 or G2Plot",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "unpkg": "dist/g2-shape.min.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "esm",
+    "dist",
+    "src"
+  ],
   "scripts": {
     "clean": "rimraf -rf lib esm dist",
     "lint-staged": "lint-staged",
